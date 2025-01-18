@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Navbar from './assets/components/navbar/Navbar';
 import Footer from './assets/components/footer/Footer';
+import { AuthProvider } from './assets/contexts/AuthContext';
 import Home from './pages/home/Home';
 import Cadastro from './pages/cadastro/Cadastro';
 import Login from './pages/login/Login';
@@ -14,23 +15,25 @@ import Login from './pages/login/Login';
 
 function App() {
   return (
+  <AuthProvider>
     <BrowserRouter>
       <Navbar />
-      <div className="min-h-[80vh]">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/login" element={<Login />} />
-          {/* <Route path="/postagens" element={<Postagens />} />
-          <Route path="/temas" element={<Temas />} />
-          <Route path="/cadastrar-temas" element={<CadastrarTemas />} />
-          <Route path="/perfil" element={<Perfil />} />
-          <Route path="/sair" element={<Sair />} /> */}
-        </Routes>
-      </div>
+        <div className="min-h-[80vh]">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/cadastro" element={<Cadastro />} />
+            <Route path="/login" element={<Login />} />
+            {/* <Route path="/postagens" element={<Postagens />} />
+            <Route path="/temas" element={<Temas />} />
+            <Route path="/cadastrar-temas" element={<CadastrarTemas />} />
+            <Route path="/perfil" element={<Perfil />} />
+            <Route path="/sair" element={<Sair />} /> */}
+          </Routes>
+        </div>
       <Footer />
     </BrowserRouter>
+  </AuthProvider>
   );
 }
 
