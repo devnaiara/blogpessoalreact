@@ -11,17 +11,16 @@ import FormTema from './assets/components/temas/formtema/FormTema';
 import DeletarTema from './assets/components/temas/deletartema/DeletarTema';
 import FormPostagem from './assets/components/postagens/formpostagem/FormPostagem';
 import DeletarPostagem from './assets/components/temas/deletarpostagem/DeletarPostagem';
+import Perfil from './pages/perfil/Perfil';
 import ListaPostagens from './assets/components/postagens/listapostagens/ListaPostagens';
+import { ToastContainer } from 'react-toastify';
 
-// import Postagens from './pages/Postagens';
-// import Temas from './pages/Temas';
-// import CadastrarTemas from './pages/CadastrarTemas';
-// import Perfil from './pages/Perfil';
-// import Sair from './pages/Sair';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
   <AuthProvider>
+    <ToastContainer />
     <BrowserRouter>
       <Navbar />
         <div className="min-h-[80vh]">
@@ -38,10 +37,8 @@ function App() {
             <Route path="/cadastrarpostagem" element={<FormPostagem />} />
             <Route path="/editarpostagem/:id" element={<FormPostagem />} /> 
             <Route path="/deletarpostagem/:id" element={<DeletarPostagem />} />
-            {/* <Route path="/postagens" element={<Postagens />} />
-            <Route path="/cadastrar-temas" element={<CadastrarTemas />} />
             <Route path="/perfil" element={<Perfil />} />
-            <Route path="/sair" element={<Sair />} /> */}
+            {/* <Route path="/sair" element={<Sair />} /> */}
           </Routes>
         </div>
       <Footer />
