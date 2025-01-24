@@ -1,49 +1,72 @@
-import { Link } from 'react-router-dom'
-import Postagem from '../../../../models/Postagem'
+import { useNavigate } from "react-router-dom";
+import CardPostagens from "../cardpostagens/CardPostagens";
+import { useState, useContext, useEffect } from "react";
+import { AuthContext } from "../../../contexts/AuthContext";
+import { DNA } from "react-loader-spinner";
+import { buscar } from "../../../../services/Service";
+import Postagem from "../../../../models/Postagem";
 
-interface CardPostagensProps {
-    postagem: Postagem
-}
+function ListaPostagens() {
 
-function CardPostagem({ postagem }: CardPostagensProps) {
+    const navigate = useNavigate();
+
+    const [postagens, setPostagens] = useState<Postagem[]>([]);
+
+    const { usuario, handleLogout } = useContext(AuthContext);
+    const token = usuario.token;
+
+    async function buscarPostagens() {
+        try {
+            await buscar('/postagens', setPostagens, {
+                headers: {
+                    Authorization: token,
+                },
+            })
+
+        } catch (error: any) {
+            if (error.toString().includes('403')) {
+                handleLogout()
+            }
+        }
+    }
+
+    useEffect(() => {
+        if (token === '') {
+            ToastAlert('Você precisa estar logado', 'info')
+            navigate('/');
+        }
+    }, [token])
+
+    useEffect(() => {
+        buscarPostagens()
+    }, [postagens.length])
+
     return (
-        <div className='border-slate-900 border 
-            flex flex-col rounded overflow-hidden justify-between'>
-                
-            <div>
-                <div className="flex w-full bg-indigo-400 py-2 px-4 items-center gap-4">
-                    <img
-                        src={postagem.usuario?.foto}
-                        className='h-12 rounded-full'
-                        alt={postagem.usuario?.nome} />
-                    <h3 className='text-lg font-bold text-center uppercase'>
-                        {postagem.usuario?.nome}
-                    </h3>
-                </div>
-                <div className='p-4 '>
-                    <h4 className='text-lg font-semibold uppercase'>{postagem.titulo}</h4>
-                    <p>{postagem.texto}</p>
-                    <p>Tema: {postagem.tema?.descricao}</p>
-                    <p>Data: {new Intl.DateTimeFormat(undefined, {
-                        dateStyle: 'full',
-                        timeStyle: 'medium',
-                    }).format(new Date(postagem.data))}</p>
-                </div>
+        <>
+            {postagens.length === 0 && (
+                <DNA
+                    visible={true}
+                    height="200"
+                    width="200"
+                    ariaLabel="dna-loading"
+                    wrapperStyle={{}}
+                    wrapperClass="dna-wrapper mx-auto"
+                />
+            )}
+            <div className='container mx-auto my-4 
+                grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'
+            >
+                {postagens.map((postagem) => (
+                    <CardPostagens key={postagem.id} postagem={postagem} />
+                ))}
+
             </div>
-            <div className="flex">
-                <Link to='' 
-                    className='w-full text-white bg-indigo-400 
-                    hover:bg-indigo-800 flex items-center justify-center py-2'>
-                    <button>Editar</button>
-                </Link>
-                <Link to='' 
-                    className='text-white bg-red-400 
-                    hover:bg-red-700 w-full flex items-center justify-center'>
-                    <button>Deletar</button>
-                </Link>
-            </div>
-        </div>
-    )
+        </>
+    );
 }
 
-export default CardPostagem
+export default ListaPostagens;
+
+function ToastAlert(arg0: string, arg1: string) {
+    throw new Error("Function not implemented.");
+}
