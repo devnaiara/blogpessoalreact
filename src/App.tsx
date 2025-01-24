@@ -9,6 +9,9 @@ import Login from './pages/login/Login';
 import ListaTemas from './assets/components/temas/listatemas/ListaTemas';
 import FormTema from './assets/components/temas/formtema/FormTema';
 import DeletarTema from './assets/components/temas/deletartema/DeletarTema';
+import FormPostagem from './assets/components/postagens/formpostagem/FormPostagem';
+import DeletarPostagem from './assets/components/temas/deletarpostagem/DeletarPostagem';
+import ListaPostagens from './assets/components/postagens/listapostagens/ListaPostagens';
 
 // import Postagens from './pages/Postagens';
 // import Temas from './pages/Temas';
@@ -31,6 +34,10 @@ function App() {
             <Route path="/cadastrartema" element={<FormTema />} />
             <Route path="/editartema/:id" element={<FormTema />} />
             <Route path="/deletartema/:id" element={<DeletarTema />} />
+            <Route path="/postagens" element={<ListaPostagens />} />
+            <Route path="/cadastrarpostagem" element={<FormPostagem />} />
+            <Route path="/editarpostagem/:id" element={<FormPostagem />} /> 
+            <Route path="/deletarpostagem/:id" element={<DeletarPostagem />} />
             {/* <Route path="/postagens" element={<Postagens />} />
             <Route path="/cadastrar-temas" element={<CadastrarTemas />} />
             <Route path="/perfil" element={<Perfil />} />

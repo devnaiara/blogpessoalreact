@@ -23,7 +23,7 @@ function Navbar () {
 
                 <div className="flex space gap-4">
                     <Link to="/" className="hover:underline">Home</Link>
-                    <Link to="/Postagens" className="hover:underline">Postagens</Link>
+                    <Link to="/postagens" className="hover:underline">Postagens</Link>
                     <Link to="/Temas" className="hover:underline">Temas</Link>
                     <Link to='/cadastrartema' className="hover:underline">Cadastrar Tema</Link>-
                     <Link to="/Cadastro" className="hover:underline">Cadastrar</Link>
