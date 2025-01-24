@@ -5,6 +5,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { DNA } from "react-loader-spinner";
 import { buscar } from "../../../../services/Service";
 import Postagem from "../../../../models/Postagem";
+import { ToastAlerta } from "../../../../utils/ToastAlerta";
 
 function ListaPostagens() {
 
@@ -32,7 +33,7 @@ function ListaPostagens() {
 
     useEffect(() => {
         if (token === '') {
-            ToastAlert('Você precisa estar logado', 'info')
+            ToastAlerta('Você precisa estar logado', 'info')
             navigate('/');
         }
     }, [token])
@@ -66,7 +67,3 @@ function ListaPostagens() {
 }
 
 export default ListaPostagens;
-
-function ToastAlert(arg0: string, arg1: string) {
-    throw new Error("Function not implemented.");
-}
