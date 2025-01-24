@@ -22,12 +22,13 @@ function Navbar () {
                 <Link to='/home' className="text-2xl font-bold">Blog Pessoal</Link>
 
                 <div className="flex space gap-4">
-                    <Link to="/" className="text-white">Home</Link>
-                    <Link to="/Postagens" className="text-white">Postagens</Link>
-                    <Link to="/Temas" className="text-white">Tema</Link>
-                    <Link to="/Cadastro" className="text-white">Cadastrar</Link>
-                    <Link to="/Perfil" className="text-white">Perfil</Link>
-                    <Link to="/Sair" onClick={logout} className="text-white">Sair</Link>
+                    <Link to="/" className="hover:underline">Home</Link>
+                    <Link to="/Postagens" className="hover:underline">Postagens</Link>
+                    <Link to="/Temas" className="hover:underline">Temas</Link>
+                    <Link to='/cadastrartema' className="hover:underline">Cadastrar Tema</Link>-
+                    <Link to="/Cadastro" className="hover:underline">Cadastrar</Link>
+                    <Link to="/Perfil" className="hover:underline">Perfil</Link>
+                    <Link to="/Sair" onClick={logout} className="hover:underline hover:text-red-400">Sair</Link>
                 </div>
             </div>
         </nav>
